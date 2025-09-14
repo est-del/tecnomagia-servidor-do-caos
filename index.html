@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Servidor do Caos — Tecnomagia Quântica</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="icon" href="assets/images/merkaba-icon.png" type="image/png">
+  <style>
+    body {
+      background: #000 url('assets/images/stars-bg.jpg') no-repeat center;
+      background-size: cover;
+      color: #0ff;
+      font-family: 'DejaVu Sans', monospace;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .ritual-panel {
+      border: 1px solid #0ff;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+      padding: 2rem;
+      margin: 3rem auto;
+      max-width: 900px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 10;
+    }
+    .glow { text-shadow: 0 0 15px #0ff; }
+    .pulse::after {
+      content: '';
+      position: absolute;
+      top: -5px; left: -5px; right: -5px; bottom: -5px;
+      border: 1px solid #0ff;
+      border-radius: 10px;
+      animation: pulse 2s infinite;
+      pointer-events: none;
+    }
+    button {
+      background: transparent;
+      border: 2px solid #0ff;
+      color: #0ff;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 1rem;
+      font-weight: bold;
+    }
+    button:hover {
+      box-shadow: 0 0 30px #0ff;
+      transform: scale(1.05);
+    }
+    .quantum-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      margin: 1rem auto;
+      width: 150px;
+    }
+    .qubit {
+      height: 30px;
+      background: #444;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+    .qubit.active {
+      background: #ff0;
+      box-shadow: 0 0 15px #ff0;
+    }
+    .status {
+      margin-top: 2rem;
+      color: #0ff;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    .footer-link {
+      color: #0ff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      margin-top: 2rem;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ritual-panel">
+    <h1>🌌 SERVIDOR DO CAOS 🌌</h1>
+    <p class="glow">"Você não está pedindo. Você está reescrevendo a realidade."</p>
+
+    <form id="manifestForm">
+      <input type="text" id="intent" placeholder="O que você deseja manifestar? (Ex: Sou próspero, saudável e livre)" required>
+      <input type="text" id="name" placeholder="Seu nome completo" required>
+      <input type="text" id="birthDate" placeholder="DD/MM/AAAA" required>
+      <input type="file" id="testimonyPhoto" accept="image/*" placeholder="Foto sua (opcional)">
+      <input type="file" id="radionicGraphic" accept="image/*" placeholder="Gráfico radiônico (opcional)">
+      <button type="submit">✨ ENVIAR PEDIDO QUÂNTICO ✨</button>
+    </form>
+
+    <div id="status"></div>
+    <div id="manifestation-display" style="height: 150px; margin: 1rem auto; border: 1px dashed #0ff; background: #000; display: flex; align-items: center; justify-content: center; color: #0ff; font-size: 0.9rem;">
+      Aguardando seu pedido...
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <a href="realizacoes.html" class="footer-link">▶️ VER O QUE JÁ SE REALIZOU</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/crypto-js.min.js"></script>
+  <script src="assets/js/noisejs.js"></script>
+  <script src="assets/js/dsp.min.js"></script>
+  <script src="assets/js/wavelet.js"></script>
+  <script src="assets/js/qrcode.min.js"></script>
+  <script src="assets/js/rituals.js"></script>
+  <script src="assets/js/github-api.js"></script>
+  <script src="assets/js/quantum-engine.js"></script>
+  <script src="assets/js/core.js"></script>
+
+  <!-- Som de fundo: Ressonância Schumann -->
+  <audio id="schumann-audio" loop autoplay muted>
+    <source src="assets/audio/schumann-7.83hz.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Auto-desbloquear áudio ao primeiro clique (necessário no navegador)
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('schumann-audio');
+      if (audio.paused) audio.muted = false;
+    }, { once: true });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>O Que Já Se Realizou — Servidor do Caos</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body { background: #000 url('assets/images/stars-bg.jpg'); color: #0ff; font-family: 'DejaVu Sans', monospace; }
+    .manifestation-card {
+      border: 1px solid #0ff;
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+      max-width: 800px;
+      background: rgba(0, 10, 20, 0.6);
+      border-radius: 10px;
+      position: relative;
+    }
+    .manifestation-card::before {
+      content: '✦';
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      font-size: 2rem;
+      color: #ff0;
+    }
+    .code { font-family: monospace; color: #0ff; font-size: 1.2rem; }
+    .date { color: #0ff; font-style: italic; }
+    .status-realized { color: #ff0; font-weight: bold; }
+    .back-btn {
+      display: inline-block;
+      margin: 2rem auto;
+      color: #0ff;
+      text-decoration: none;
+      border: 1px solid #0ff;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div style="text-align: center; margin: 3rem auto; max-width: 800px;">
+    <h1>🔮 O QUE JÁ SE REALIZOU</h1>
+    <p class="glow">"O futuro já existe. Nós apenas o lembramos."</p>
+  </div>
+
+  <div id="manifestations-container" style="padding: 2rem;"></div>
+
+  <a href="index.html" class="back-btn">← Voltar ao Portal</a>
+
+  <script>
+    fetch('manifesto_global.json')
+      .then(r => r.json())
+      .then(data => {
+        const container = document.getElementById('manifestations-container');
+        if (!data.manifestations || data.manifestations.length === 0) {
+          container.innerHTML = '<p style="color: #888;">Ainda não há manifestações realizadas. Seja o primeiro.</p>';
+          return;
+        }
+        data.manifestations.forEach(m => {
+          const card = document.createElement('div');
+          card.className = 'manifestation-card';
+          card.innerHTML = `
+            <h3>${m.intento.substring(0, 80)}${m.intento.length > 80 ? '...' : ''}</h3>
+            <p><strong>Nome:</strong> ${m.nome}</p>
+            <p><strong>Código Quântico:</strong> <span class="code">${m.codigo}</span></p>
+            <p><strong>Data de Realização:</strong> <span class="date">${new Date(m.data_realizacao).toLocaleDateString('pt-BR')}</span></p>
+            <p><strong>Status:</strong> <span class="status-realized">✅ REALIZADO</span></p>
+            <p><a href="${m.url}" target="_blank">Ver Assinatura Quântica →</a></p>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        document.getElementById('manifestations-container').innerHTML = `<p style="color: red;">Erro ao carregar manifestações: ${err.message}</p>`;
+      });
+  </script>
+
+</body>
+</html>
