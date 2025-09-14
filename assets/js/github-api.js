@@ -1,6 +1,6 @@
 // Substitua com seu token público (PAT)
-const GITHUB_TOKEN = 'ghp_...'; // 💡 INSIRA SEU TOKEN AQUI!
-const OWNER = 'seuusuario';
+const GITHUB_TOKEN = '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'; // 💡 INSIRA SEU TOKEN AQUI!
+const OWNER = 'Est_Ela';
 const REPO = 'tecnomagia-servidor-do-caos';
 
 async function fetchJson(url) {
@@ -99,4 +99,5 @@ async function getAllUsersFromIssues() {
 async function enviarNotificacaoQuantica(email, assinatura) {
   // Simula envio de notificação — pode ser integrado com EmailJS ou Zapier
   console.log(`[Q-NOTIF] Enviada para ${email}: ${assinatura.eventoFuturo.intento} será real em ${assinatura.eventoFuturo.data_realizacao}`);
+
 }
